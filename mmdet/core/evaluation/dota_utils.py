@@ -182,29 +182,27 @@ def OBBDetComp4(dataset, results):
     results_dict = {}
     for idx in range(len(dataset)):
         filename = dataset.img_infos[idx]['filename']
-        result = results[idx]        
+        result = results[idx][0]               
         print(type(result))
         for label in range(len(result)):
-            rbboxess = result[label]
+            rbboxes = result[label]
             print("label")
-            print(type(rbboxess))
-            print(len(rbboxess))
+            print(type(rbboxes))
+            print(len(rbboxes))
             print(label)
             # import pdb
             # pdb.set_trace()
             cls_name = dataset.CLASSES[label]
             if cls_name not in results_dict:
                 results_dict[cls_name] = []
-            for rbboxes in rbboxess:
-                print(rbboxes)
-                print(type(rbboxes))                
-                for i in range(rbboxes.shape[0]):
-                    print(type(rbboxes[i]))
-                    pprint(rbboxes[i])
-                    poly = rbboxes[i][:-1]
-                    score = float(rbboxes[i][-1])
-                    outline = filename + ' ' + str(score) + ' ' + ' '.join(map(str, poly))
-                    results_dict[cls_name].append(outline)
+
+            for i in range(rbboxes.shape[0]):
+                print(type(rbboxes[i]))
+                pprint(rbboxes[i])
+                poly = rbboxes[i][:-1]
+                score = float(rbboxes[i][-1])
+                outline = filename + ' ' + str(score) + ' ' + ' '.join(map(str, poly))
+                results_dict[cls_name].append(outline)
     return results_dict
 
 def HBBDet2Comp4(dataset, results):
