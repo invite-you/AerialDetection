@@ -27,7 +27,8 @@ class CustomAugmentation(object):
             x1, y1, x2, y2 = box
             bboxes.append( ia.BoundingBox(x1=x1, y1=y1, x2=x2, y2=y2) )
         print("####")
-        print(img.shape, bboxes.shape, masks.shape)
+        print(type(img), type(bboxes), type(masks))
+        print(img.shape, bboxes[0].shape, masks[0].shape)
         image_aug, bbs_aug, segmaps_aug = self.seq(images=[image], bounding_boxes=[bboxes], segmentation_maps=[masks])
         image_aug, bbs_aug, segmaps_aug = image_aug[0], bbs_aug[0], segmaps_aug=[0]
         print(image_aug.shape, bbs_aug.shape, segmaps_aug.shape)
