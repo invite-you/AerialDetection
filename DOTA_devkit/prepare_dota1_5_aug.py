@@ -72,7 +72,7 @@ def prepare(srcpath, dstpath):
     if not os.path.exists(os.path.join(dstpath, 'trainval1024_ms')):
         os.makedirs(os.path.join(dstpath, 'trainval1024_ms'))
 
-    split_train = ImgSplit_multi_process.splitbase(os.path.join(srcpath, 'train'),
+    split_train = ImgSplit_multi_process.splitbase(os.path.join(srcpath, 'train2017'),
                        os.path.join(dstpath, 'trainval1024'),
                       gap=500,
                       subsize=1024,
@@ -80,7 +80,7 @@ def prepare(srcpath, dstpath):
                       )
     split_train.splitdata(1)
 
-    split_train_ms = ImgSplit_multi_process.splitbase(os.path.join(srcpath, 'train'),
+    split_train_ms = ImgSplit_multi_process.splitbase(os.path.join(srcpath, 'train2017'),
                         os.path.join(dstpath, 'trainval1024_ms'),
                         gap=500,
                         subsize=1024,
@@ -88,7 +88,7 @@ def prepare(srcpath, dstpath):
     split_train_ms.splitdata(0.5)
     split_train_ms.splitdata(1.5)
 
-    split_val = ImgSplit_multi_process.splitbase(os.path.join(srcpath, 'val'),
+    split_val = ImgSplit_multi_process.splitbase(os.path.join(srcpath, 'val2017'),
                        os.path.join(dstpath, 'trainval1024'),
                       gap=500,
                       subsize=1024,
@@ -96,7 +96,7 @@ def prepare(srcpath, dstpath):
                       )
     split_val.splitdata(1)
 
-    split_val_ms = ImgSplit_multi_process.splitbase(os.path.join(srcpath, 'val'),
+    split_val_ms = ImgSplit_multi_process.splitbase(os.path.join(srcpath, 'val2017'),
                         os.path.join(dstpath, 'trainval1024_ms'),
                         gap=500,
                         subsize=1024,
