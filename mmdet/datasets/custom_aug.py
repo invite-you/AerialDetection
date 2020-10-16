@@ -1,5 +1,6 @@
 import imgaug as ia
 import imgaug.augmenters as iaa
+import numpy as np
 
 class CustomAugmentation(object):
 
@@ -23,7 +24,8 @@ class CustomAugmentation(object):
 
     def __call__(self, img, boxes, masks, labels, filename):
         print("####")
-        print(type(img), type(boxes), type(masks[0]))
+        print(type(img), type(boxes), type(masks[0]), len(masks) np.unique(masks[0]))
+        print(masks[0])
         print(img.shape, boxes.shape, masks[0].shape)
         bboxes = []
         for box in boxes[:, :4]:
