@@ -193,7 +193,8 @@ def OBBDetComp4(dataset, results):
             cls_name = dataset.CLASSES[label]
             if cls_name not in results_dict:
                 results_dict[cls_name] = []
-            for i in range(rbboxes.shape[0]):
+            #for i in range(rbboxes.shape[0]):
+            for i in range(len(rbboxes)):
                 poly = rbboxes[i][:-1]
                 score = float(rbboxes[i][-1])
                 outline = filename + ' ' + str(score) + ' ' + ' '.join(map(str, poly))
