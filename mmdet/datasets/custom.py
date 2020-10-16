@@ -11,6 +11,7 @@ from .utils import to_tensor, random_scale
 from .extra_aug import ExtraAugmentation
 from .rotate_aug import RotateAugmentation
 from .rotate_aug import RotateTestAugmentation
+from .custom_aug import CustomAugmentation
 
 class CustomDataset(Dataset):
     """Custom dataset for detection.
@@ -54,6 +55,7 @@ class CustomDataset(Dataset):
                  seg_scale_factor=1,
                  extra_aug=None,
                  rotate_aug=None,
+                 custom_aug=None,
                  rotate_test_aug=None,
                  resize_keep_ratio=True,
                  test_mode=False):
@@ -125,6 +127,12 @@ class CustomDataset(Dataset):
             self.extra_aug = ExtraAugmentation(**extra_aug)
         else:
             self.extra_aug = None
+
+            # if use extra augmentation
+        if custom_aug is not None:
+            self.custom_aug = CustomAugmentation()
+        else:
+            self.custom_aug = None
 
         # if use rotation augmentation
         if rotate_aug is not None:
@@ -227,6 +235,11 @@ class CustomDataset(Dataset):
             img, gt_bboxes, gt_labels = self.extra_aug(img, gt_bboxes,
                                                        gt_labels)
 
+        # rotate augmentation
+        if self.custom_aug is not None:
+            # only support mask now, TODO: support none mask version
+            img, gt_bboxes, gt_masks, gt_labels = self.custom_aug()            
+            
         # rotate augmentation
         if self.rotate_aug is not None:
             # only support mask now, TODO: support none mask version
