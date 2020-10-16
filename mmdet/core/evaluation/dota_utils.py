@@ -184,7 +184,7 @@ def OBBDetComp4(dataset, results):
         filename = dataset.img_infos[idx]['filename']
         result = results[idx][0]               
         print(type(result))
-        for label in range(len(result)):
+        for label in range(len(result)-1):
             rbboxes = result[label]
             print("label")
             print(type(rbboxes))
@@ -192,6 +192,7 @@ def OBBDetComp4(dataset, results):
             print(label)
             # import pdb
             # pdb.set_trace()
+            print(dataset.CLASSES)
             cls_name = dataset.CLASSES[label]
             if cls_name not in results_dict:
                 results_dict[cls_name] = []
