@@ -7,6 +7,7 @@ from .utils import to_tensor, random_scale, show_ann, get_dataset
 from .concat_dataset import ConcatDataset
 from .repeat_dataset import RepeatDataset
 from .extra_aug import ExtraAugmentation
+from .custom_aug import CustomAugmentation
 from .DOTA import DOTADataset, DOTADataset_v3
 from .DOTA2 import DOTA2Dataset
 from .DOTA2 import DOTA2Dataset_v2
@@ -19,7 +20,7 @@ __all__ = [
     'DOTA2Dataset_v2', 'DOTA2Dataset_v3', 'VOCDataset', 'GroupSampler',
     'DistributedGroupSampler', 'build_dataloader', 'to_tensor', 'random_scale',
     'show_ann', 'get_dataset', 'ConcatDataset', 'RepeatDataset',
-    'ExtraAugmentation', 'HRSCL1Dataset', 'DOTADataset_v3',
+    'ExtraAugmentation', 'CustomAugmentation', 'HRSCL1Dataset', 'DOTADataset_v3',
     'DOTA1_5Dataset', 'DOTA1_5Dataset_v3', 'DOTA1_5Dataset_v2',
     'DOTA2Dataset_v4'
 ]
