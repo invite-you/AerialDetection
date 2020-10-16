@@ -22,13 +22,14 @@ class CustomAugmentation(object):
                     ])
 
     def __call__(self, img, boxes, masks, labels, filename):
+        print("####")
+        print(type(img), type(boxes), type(masks))
+        print(img.shape, boxes.shape, masks.shape)
         bboxes = []
         for box in boxes[:, :4]:
             x1, y1, x2, y2 = box
-            bboxes.append( ia.BoundingBox(x1=x1, y1=y1, x2=x2, y2=y2) )
-        print("####")
-        print(type(img), type(bboxes), type(masks))
-        print(img.shape, bboxes[0].shape, masks[0].shape)
+            bboxes.append( ia.BoundingBox(x1=x1, y1=y1, x2=x2, y2=y2) )        
+        
         image_aug, bbs_aug, segmaps_aug = self.seq(images=[image], bounding_boxes=[bboxes], segmentation_maps=[masks])
         image_aug, bbs_aug, segmaps_aug = image_aug[0], bbs_aug[0], segmaps_aug=[0]
         print(image_aug.shape, bbs_aug.shape, segmaps_aug.shape)
