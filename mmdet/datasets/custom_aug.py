@@ -23,8 +23,8 @@ class CustomAugmentation(object):
 
     def __call__(self, img, boxes, masks, labels, filename):
         print("####")
-        print(type(img), type(boxes), type(masks))
-        print(img.shape, boxes.shape, masks.shape)
+        print(type(img), type(boxes), type(masks[0]))
+        print(img.shape, boxes.shape, masks[0].shape)
         bboxes = []
         for box in boxes[:, :4]:
             x1, y1, x2, y2 = box
