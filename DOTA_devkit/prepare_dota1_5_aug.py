@@ -7,8 +7,8 @@ from multiprocessing import Pool
 from DOTA2COCO import DOTA2COCOTest, DOTA2COCOTrain
 import argparse
 
-wordname_16 = ['plane', 'baseball-diamond', 'bridge', 'ground-track-field', 'small-vehicle', 'large-vehicle', 'ship', 'tennis-court',
-                'basketball-court', 'storage-tank',  'soccer-ball-field', 'roundabout', 'harbor', 'swimming-pool', 'helicopter', 'container-crane']
+wordname_16 = ['small ship',  'large ship', 'civilian aircraft', 'military aircraft', 'small car', 
+               'bus', 'truck', 'train', 'crane', 'bridge', 'oil tank', 'dam', 'athletic field', 'helipad', 'roundabout']
 
 def parse_args():
     parser = argparse.ArgumentParser(description='prepare dota1')
@@ -37,7 +37,7 @@ def filecopy(srcpath, dstpath, num_process=16):
 def singel_move(src_dst_tuple):
     shutil.move(*src_dst_tuple)
 
-def filemove(srcpath, dstpath, num_process=16):
+def filemove(srcpath, dstpath, num_process=15):
     pool = Pool(num_process)
     filelist = util.GetFileFromThisRootDir(srcpath)
 
