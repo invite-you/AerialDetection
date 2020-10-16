@@ -3,25 +3,13 @@ import numpy as np
 
 class DOTA1_5Dataset(CocoDataset):
 
-    CLASSES = ('plane', 'baseball-diamond',
-                'bridge', 'ground-track-field',
-                'small-vehicle', 'large-vehicle',
-                'ship', 'tennis-court',
-                'basketball-court', 'storage-tank',
-                'soccer-ball-field', 'roundabout',
-                'harbor', 'swimming-pool',
-                'helicopter', 'container-crane')
+    CLASSES = ('small ship',  'large ship', 'civilian aircraft', 'military aircraft', 'small car', 
+               'bus', 'truck', 'train', 'crane', 'bridge', 'oil tank', 'dam', 'athletic field', 'helipad', 'roundabout')
 
 class DOTA1_5Dataset_v2(CocoDataset):
     # Note! same with DOTA2_v3
-    CLASSES = ('plane', 'baseball-diamond',
-                'bridge', 'ground-track-field',
-                'small-vehicle', 'large-vehicle',
-                'ship', 'tennis-court',
-                'basketball-court', 'storage-tank',
-                'soccer-ball-field', 'roundabout',
-                'harbor', 'swimming-pool',
-                'helicopter', 'container-crane')
+    CLASSES = ('small ship',  'large ship', 'civilian aircraft', 'military aircraft', 'small car', 
+               'bus', 'truck', 'train', 'crane', 'bridge', 'oil tank', 'dam', 'athletic field', 'helipad', 'roundabout')
 
     def _parse_ann_info(self, ann_info, with_mask=True):
         """Parse bbox and mask annotation.
