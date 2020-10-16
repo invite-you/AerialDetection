@@ -182,13 +182,12 @@ def OBBDetComp4(dataset, results):
     results_dict = {}
     for idx in range(len(dataset)):
         filename = dataset.img_infos[idx]['filename']
-        result = results[idx]
-        pprint(result)
+        result = results[idx]        
         for label in range(len(result)):
             rbboxes = result[label]
-            print(type(rbboxes))
-            pprint(rbboxes)
             
+            pprint(rbboxes)
+            print(type(rbboxes))
             # import pdb
             # pdb.set_trace()
             cls_name = dataset.CLASSES[label]
