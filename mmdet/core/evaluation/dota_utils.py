@@ -186,6 +186,9 @@ def OBBDetComp4(dataset, results):
         pprint(result)
         for label in range(len(result)):
             rbboxes = result[label]
+            print(type(rbboxes))
+            pprint(rbboxes)
+            
             # import pdb
             # pdb.set_trace()
             cls_name = dataset.CLASSES[label]
