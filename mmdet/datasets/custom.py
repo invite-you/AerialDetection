@@ -238,7 +238,8 @@ class CustomDataset(Dataset):
         # rotate augmentation
         if self.custom_aug is not None:
             # only support mask now, TODO: support none mask version
-            img, gt_bboxes, gt_masks, gt_labels = self.custom_aug()            
+            img, gt_bboxes, gt_masks, gt_labels = self.custom_aug(img, gt_bboxes,
+                                                                      gt_masks, gt_labels, img_info['filename'])
             
         # rotate augmentation
         if self.rotate_aug is not None:
