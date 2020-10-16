@@ -24,7 +24,7 @@ class CustomAugmentation(object):
 
     def __call__(self, img, boxes, masks, labels, filename):
         print("####")
-        print(type(img), type(boxes), type(masks[0]), len(masks) np.unique(masks[0]))
+        print(type(img), type(boxes), type(masks[0]), len(masks), np.unique(masks[0]))
         print(masks[0])
         print(img.shape, boxes.shape, masks[0].shape)
         bboxes = []
