@@ -211,7 +211,7 @@ data = dict(
         with_mask=True,
         with_crowd=True,
         with_label=True,
-        rotate_aug=dict(rotate_range=(-360, 360))),
+        custom_aug=dict()),
     val=dict(
         type=dataset_type,
         ann_file=data_root + 'annotations/instances_val2017.json',
