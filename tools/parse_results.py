@@ -123,7 +123,7 @@ if __name__ == '__main__':
     args = parse_args()
     config_file = args.config
     config_name = os.path.splitext(os.path.basename(config_file))[0]
-    pkl_file = os.path.join('work_dirs', config_name, 'results.pkl')
+    pkl_file = '/content/gdrive/My Drive/Arirang/results/results.pkl' #os.path.join('work_dirs', config_name, 'results.pkl')
     output_path = os.path.join('work_dirs', config_name)
     type = args.type
     parse_results(config_file, pkl_file, output_path, type)
