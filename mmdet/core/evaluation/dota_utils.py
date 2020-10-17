@@ -273,7 +273,13 @@ def HBBOBB2Comp4(dataset, results):
         filename = dataset.img_infos[idx]['filename']
 
         hbb_det, obb_det = results[idx]
-
+        
+        print("hbb_det")
+        print(hbb_det)
+        print(type(hbb_det))
+        print(len(hbb_det))
+        
+        
         for label in range(len(hbb_det)):
             bboxes = hbb_det[label]
             rbboxes = obb_det[label]
