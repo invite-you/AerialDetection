@@ -79,7 +79,9 @@ def parse_results(config_file, resultfile, dstpath, type):
         # dota2, hbb has passed, obb has passed
         hbb_results_dict, obb_results_dict = HBBSeg2Comp4(dataset, outputs)
         current_thresh = 0.3
-
+    print(obb_results_dict)
+    print(len(obb_results_dict))
+    
     dataset_type = cfg.dataset_type
 
     if 'obb_results_dict' in vars():
