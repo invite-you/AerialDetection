@@ -281,7 +281,7 @@ def HBBOBB2Comp4(dataset, results):
         print(len(hbb_det))
         """
         
-        for label in range(len(hbb_det)):
+        for label in range(len(hbb_det)-1):
             bboxes = hbb_det[label]
             #rbboxes = obb_det[label]
             cls_name = dataset.CLASSES[label]
