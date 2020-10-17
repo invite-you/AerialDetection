@@ -290,22 +290,23 @@ def HBBOBB2Comp4(dataset, results):
             if cls_name not in obb_results_dict:
                 obb_results_dict[cls_name] = []
             bboxes=np.array(bboxes)
+            rbboxes=np.array(rbboxes)
             
-            
+            """
             print("bboxes")
             print(type(bboxes))
             print(len(bboxes))
             print(bboxes)
-            
+            """
             
             # parse hbb results
-            for i in range(len(bboxes)):
+            for i in range(bboxes.shape[0]):            
                 bbox = bboxes[i]
                 score = float(bboxes[i][-1])
                 outline = filename + ' ' + str(score) + ' ' + ' '.join(map(str, bbox))
                 hbb_results_dict[cls_name].append(outline)
             # parse obb results
-            for i in range(len(rbboxes)):#for i in range(rbboxes.shape[0]):
+            for i in range(rbboxes.shape[0]):
                 poly = rbboxes[i]
                 score = float(rbboxes[i][-1])
                 outline = filename + ' ' + str(score) + ' ' + ' '.join(map(str, poly))
