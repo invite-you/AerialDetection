@@ -307,6 +307,13 @@ def HBBOBB2Comp4(dataset, results):
                 hbb_results_dict[cls_name].append(outline)
             # parse obb results
             for i in range(rbboxes.shape[0]):
+                 
+                print("rbboxes[i]")
+                print(type(rbboxes[i]))
+                print(len(rbboxes[i]))
+                print(rbboxes[i])
+                
+                
                 poly = rbboxes[i]
                 score = float(rbboxes[i][-1])
                 outline = filename + ' ' + str(score) + ' ' + ' '.join(map(str, poly))
