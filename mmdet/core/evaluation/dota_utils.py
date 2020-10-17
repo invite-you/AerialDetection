@@ -299,7 +299,7 @@ def HBBOBB2Comp4(dataset, results):
             
             
             # parse hbb results
-            for i in range(bboxes.shape[0]):
+            for i in range(len(bboxes)):
                 bbox = bboxes[i]
                 score = float(bboxes[i][-1])
                 outline = filename + ' ' + str(score) + ' ' + ' '.join(map(str, bbox))
