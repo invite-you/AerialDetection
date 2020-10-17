@@ -274,11 +274,12 @@ def HBBOBB2Comp4(dataset, results):
 
         hbb_det, obb_det = results[idx]
         
+        """
         print("hbb_det")
         print(hbb_det)
         print(type(hbb_det))
         print(len(hbb_det))
-        
+        """
         
         for label in range(len(hbb_det)):
             bboxes = hbb_det[label]
@@ -289,6 +290,14 @@ def HBBOBB2Comp4(dataset, results):
             if cls_name not in obb_results_dict:
                 obb_results_dict[cls_name] = []
             bboxes=np.array(bboxes)
+            
+            
+            print("bboxes")
+            print(type(bboxes))
+            print(len(bboxes))
+            print(bboxes)
+            
+            
             # parse hbb results
             for i in range(bboxes.shape[0]):
                 bbox = bboxes[i]
