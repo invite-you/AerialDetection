@@ -278,7 +278,7 @@ def HBBOBB2Comp4(dataset, results):
         print(hbb_det)
         print(type(hbb_det))
         print(len(hbb_det))
-        
+        hbb_det=np.array(hbb_det)
         
         for label in range(len(hbb_det)):
             bboxes = hbb_det[label]
