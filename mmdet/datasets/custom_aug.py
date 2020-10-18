@@ -25,7 +25,7 @@ class CustomAugmentation(object):
                         sometimes(iaa.PerspectiveTransform(scale=(0.01, 0.15))),
                     ])
 
-    def __call__(self, img, boxes, masks, labels):
+    def __call__(self, img, boxes, masks, labels, filename):
         #print("####")
         #print(type(img), type(boxes), type(masks[0]), len(masks), np.unique(masks[0]))
         #print(img.shape, boxes.shape, masks[0].shape)
