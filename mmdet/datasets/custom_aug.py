@@ -5,6 +5,8 @@ from imgaug.augmentables.polys import Polygon, PolygonsOnImage
 import numpy as np
 import cv2
 
+from PIL import Image, ImageDraw
+
 class CustomAugmentation(object):
 
     def __init__(self):
