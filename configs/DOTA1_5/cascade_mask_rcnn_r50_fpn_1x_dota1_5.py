@@ -225,8 +225,8 @@ data = dict(
         with_label=True),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/instances_val2017.json',
-        img_prefix=data_root + 'val2017/',
+        ann_file= '/content/gdrive/My Drive/Arirang/data/test/instances_test2017.json',
+        img_prefix= '/content/gdrive/My Drive/Arirang/data/test/images/',
         # ann_file=data_root + 'test1024_v2/dota_test_v1_1.0.json',
         # img_prefix=data_root + 'test1024_v2/images',
         img_scale=(1024, 1024),
@@ -236,6 +236,7 @@ data = dict(
         with_mask=True,
         with_label=False,
         test_mode=True))
+
 # optimizer
 optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
