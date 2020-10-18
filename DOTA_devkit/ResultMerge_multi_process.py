@@ -159,39 +159,40 @@ def poly2origpoly(poly, x, y, rate):
 
 def mergesingle(dstpath, nms, nms_thresh, fullname):
     name = util.custombasename(fullname)
-    #print('name:', name)
+    print('name:', name)
     dstname = os.path.join(dstpath, name + '.txt')
     with open(fullname, 'r') as f_in:
-        # print('fullname: ', fullname)
+        print('fullname: ', fullname)
         nameboxdict = {}
         lines = f_in.readlines()
         splitlines = [x.strip().split(' ') for x in lines]
         for splitline in splitlines:
+            subname = splitline[0]
+            splitname = subname.split('__')
+            oriname = splitname[0]
+            pattern1 = re.compile(r'__\d+___\d+')
+            #print('subname:', subname)
+            x_y = re.findall(pattern1, subname)
             try:
-                subname = splitline[0]
-                splitname = subname.split('__')
-                oriname = splitname[0]
-                pattern1 = re.compile(r'__\d+___\d+')
-                #print('subname:', subname)
-                x_y = re.findall(pattern1, subname)
-                x_y_2 = re.findall(r'\d+', x_y[0])
+                x_y_2 = re.findall(r'\d+', x_y[0])                
                 x, y = int(x_y_2[0]), int(x_y_2[1])
-
-                pattern2 = re.compile(r'__([\d+\.]+)__\d+___')
-
-                rate = re.findall(pattern2, subname)[0]
-
-                confidence = splitline[1]
-                poly = list(map(float, splitline[2:]))
-                origpoly = poly2origpoly(poly, x, y, rate)
-                det = origpoly
-                det.append(confidence)
-                det = list(map(float, det))
-                if (oriname not in nameboxdict):
-                    nameboxdict[oriname] = []
-                nameboxdict[oriname].append(det)
-            except:
+            except KeyError:
                 continue
+
+            pattern2 = re.compile(r'__([\d+\.]+)__\d+___')
+
+            rate = re.findall(pattern2, subname)[0]
+
+            confidence = splitline[1]
+            poly = list(map(float, splitline[2:]))
+            origpoly = poly2origpoly(poly, x, y, rate)
+            det = origpoly
+            det.append(confidence)
+            det = list(map(float, det))
+            if (oriname not in nameboxdict):
+                nameboxdict[oriname] = []
+            nameboxdict[oriname].append(det)
+            
         nameboxnmsdict = nmsbynamedict(nameboxdict, nms, nms_thresh)
         with open(dstname, 'w') as f_out:
             for imgname in nameboxnmsdict:
