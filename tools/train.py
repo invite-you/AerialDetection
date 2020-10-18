@@ -82,6 +82,8 @@ def main():
             CLASSES=train_dataset.CLASSES)
     # add an attribute for visualization convenience
     model.CLASSES = train_dataset.CLASSES
+    
+    print(f'Config:\n{model.cfg.pretty_text}')
     train_detector(
         model,
         train_dataset,
