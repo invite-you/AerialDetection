@@ -36,19 +36,18 @@ class CustomAugmentation(object):
         
         # mask를 위해서 polygon 만들기
         points = []
-        for gt_mask in gt_masks:
+        for gt_mask in masks:
             contours, ct = cv2.findContours(gt_mask, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
             for c in contours:
-                # 각도 있는 다각형
-                #if rect[2] < 100 or rect[3] < 100:continue
+                # 각도 있는 다각형                
                 rc = cv2.minAreaRect(contours[0])
                 points.append( cv2.boxPoints(rc) )
                 #cv2.dravwContours(im, [box], 0, (0,255,0),3)
                 # 각도 없는 사각형
-                rect = cv2.boundingRect(c)
-                x,y,w,h = rect
-                cv2.rectangle(im,(x,y),(x+w,y+h),(0,255,0),2)
-                cv2.putText(im,'Moth Detected',(x+w+10,y+h),0,0.3,(0,255,0))
+                #rect = cv2.boundingRect(c)
+                #x,y,w,h = rect
+                #cv2.rectangle(im,(x,y),(x+w,y+h),(0,255,0),2)
+                #cv2.putText(im,'Moth Detected',(x+w+10,y+h),0,0.3,(0,255,0))
                 
         mulpoly = [ Polygon(point) for point in points]
         psoi = ia.PolygonsOnImage(mulpoly, shape=img.shape)
