@@ -41,7 +41,7 @@ model = dict(
             in_channels=256,
             fc_out_channels=1024,
             roi_feat_size=7,
-            num_classes=17,
+            num_classes=15,
             target_means=[0., 0., 0., 0.],
             target_stds=[0.1, 0.1, 0.2, 0.2],
             reg_class_agnostic=True,
@@ -59,7 +59,7 @@ model = dict(
             in_channels=256,
             fc_out_channels=1024,
             roi_feat_size=7,
-            num_classes=17,
+            num_classes=15,
             target_means=[0., 0., 0., 0.],
             target_stds=[0.05, 0.05, 0.1, 0.1],
             reg_class_agnostic=True,
@@ -77,7 +77,7 @@ model = dict(
             in_channels=256,
             fc_out_channels=1024,
             roi_feat_size=7,
-            num_classes=17,
+            num_classes=15,
             target_means=[0., 0., 0., 0.],
             target_stds=[0.033, 0.033, 0.067, 0.067],
             reg_class_agnostic=True,
@@ -100,7 +100,7 @@ model = dict(
         num_convs=4,
         in_channels=256,
         conv_out_channels=256,
-        num_classes=17,
+        num_classes=15,
         loss_mask=dict(
             type='CrossEntropyLoss', use_mask=True, loss_weight=1.0)))
 # model training and testing settings
@@ -196,43 +196,47 @@ test_cfg = dict(
     keep_all_stages=False)
 # dataset settings
 dataset_type = 'DOTA1_5Dataset_v2'
-data_root = 'data/dota1_1024/'
+data_root = '/content/gdrive/My Drive/Arirang/data/train/coco_add/'
 img_norm_cfg = dict(
-    mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
+    mean=[54.06, 53.295, 50.235], std=[36.72, 35.955, 33.915], to_rgb=True)
 data = dict(
     imgs_per_gpu=2,
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
-        ann_file=data_root + 'trainval1024/DOTA1_5_trainval1024.json',
-        img_prefix=data_root + 'trainval1024/images/',
+        ann_file=data_root + 'annotations/instances_train2017.json',
+        img_prefix=data_root + 'train2017/',
         img_scale=(1024, 1024),
         img_norm_cfg=img_norm_cfg,
         size_divisor=32,
         flip_ratio=0.5,
         with_mask=True,
         with_crowd=True,
-        with_label=True),
+        with_label=True,
+        custom_aug=True),
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'trainval1024/DOTA1_5_trainval1024.json',
-        img_prefix=data_root + 'trainval1024/images/',
+        ann_file=data_root + 'annotations/instances_val2017.json',
+        img_prefix=data_root + 'val2017/',
         img_scale=(1024, 1024),
         img_norm_cfg=img_norm_cfg,
         size_divisor=32,
         flip_ratio=0,
         with_mask=True,
         with_crowd=True,
-        with_label=True),
+        with_label=True,
+        custom_aug=True),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + 'test1024/DOTA1_5_test1024.json',
-        img_prefix=data_root + 'test1024/images',
+        ann_file= '/content/gdrive/My Drive/Arirang/data/test/instances_test2017.json',
+        img_prefix= '/content/gdrive/My Drive/Arirang/data/test/images/',
+        # ann_file=data_root + 'test1024_v2/dota_test_v1_1.0.json',
+        # img_prefix=data_root + 'test1024_v2/images',
         img_scale=(1024, 1024),
         img_norm_cfg=img_norm_cfg,
         size_divisor=32,
         flip_ratio=0,
-        with_mask=True,
+        with_mask=False,
         with_label=False,
         test_mode=True))
 # optimizer
@@ -245,7 +249,7 @@ lr_config = dict(
     warmup_iters=500,
     warmup_ratio=1.0 / 3,
     step=[8, 11])
-checkpoint_config = dict(interval=12)
+checkpoint_config = dict(interval=5)
 # yapf:disable
 log_config = dict(
     interval=50,
@@ -255,10 +259,10 @@ log_config = dict(
     ])
 # yapf:enable
 # runtime settings
-total_epochs = 12
+total_epochs = 1000
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = './work_dirs/htc_without_semantic_r50_fpn_1x_dota1_5'
+work_dir = '/content/gdrive/My Drive/Arirang/models/htc_without_semantic_r50_fpn_1x_dota1_5/'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
