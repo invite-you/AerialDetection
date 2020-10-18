@@ -176,7 +176,7 @@ def mergesingle(dstpath, nms, nms_thresh, fullname):
             try:
                 x_y_2 = re.findall(r'\d+', x_y[0])                
                 x, y = int(x_y_2[0]), int(x_y_2[1])
-            except KeyError:
+            except IndexError:
                 continue
 
             pattern2 = re.compile(r'__([\d+\.]+)__\d+___')
