@@ -69,7 +69,7 @@ def main():
         logger.info('Set random seed to {}'.format(args.seed))
         set_random_seed(args.seed)
         
-    print(f'Config:\n{model.cfg.pretty_text}')
+    print(f'Config:\n{cfg.pretty_text}')
     
     model = build_detector(
         cfg.model, train_cfg=cfg.train_cfg, test_cfg=cfg.test_cfg)
