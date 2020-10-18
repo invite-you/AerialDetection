@@ -3,6 +3,7 @@ import imgaug.augmenters as iaa
 from imgaug.augmentables.polys import Polygon, PolygonsOnImage
 
 import numpy as np
+import cv2
 
 class CustomAugmentation(object):
 
