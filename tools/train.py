@@ -68,7 +68,9 @@ def main():
     if args.seed is not None:
         logger.info('Set random seed to {}'.format(args.seed))
         set_random_seed(args.seed)
-
+        
+    print(f'Config:\n{model.cfg.pretty_text}')
+    
     model = build_detector(
         cfg.model, train_cfg=cfg.train_cfg, test_cfg=cfg.test_cfg)
 
@@ -81,9 +83,8 @@ def main():
             config=cfg.text,
             CLASSES=train_dataset.CLASSES)
     # add an attribute for visualization convenience
-    model.CLASSES = train_dataset.CLASSES
+    model.CLASSES = train_dataset.CLASSES    
     
-    print(f'Config:\n{model.cfg.pretty_text}')
     train_detector(
         model,
         train_dataset,
