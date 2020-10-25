@@ -12,20 +12,14 @@ class CustomAugmentation(object):
     def __init__(self):
         sometimes = lambda aug: iaa.Sometimes(0.3, aug)
         self.seq = iaa.Sequential([
+                        iaa.CropToFixedSize(width=640, height=640),
                         iaa.Fliplr(0.5),
                         iaa.Flipud(0.5),
-                        iaa.Affine(scale=(0.5, 1.5), rotate=(-380, 380),
+                        iaa.Affine(rotate=(-380, 380),
                                 translate_percent={'x': (-0.2, 0.2), 'y': (-0.2, 0.2)},
                                 #mode=['symmetric', 'reflect'], # bbox는 reflect 되지 않음
-                                cval=(0, 255)),
-                        iaa.GammaContrast((0.8, 1.2)),
-                        sometimes(iaa.SomeOf(1, [iaa.MultiplyAndAddToBrightness(mul=(0.5,
-                                1.5), add=(-10, 10)), iaa.Grayscale(alpha=(0.0, 1.0))])),
-                        sometimes(iaa.SomeOf(1, [iaa.GaussianBlur(sigma=(0.2, 2.0)),
-                                iaa.AverageBlur(k=(1, 5)), iaa.MedianBlur(k=(1, 5)),
-                                iaa.BilateralBlur(d=(3, 10), sigma_color=(10, 250),
-                                sigma_space=(10, 250))])),
-                        sometimes(iaa.PerspectiveTransform(scale=(0.01, 0.15))),
+                                cval=(0, 0)),                             
+                        sometimes(iaa.PerspectiveTransform(scale=(0.01, 0.11))),
                     ])
 
     def __call__(self, img, boxes, masks, labels, filename):
