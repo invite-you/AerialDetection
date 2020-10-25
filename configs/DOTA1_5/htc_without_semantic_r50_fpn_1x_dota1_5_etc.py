@@ -260,10 +260,10 @@ log_config = dict(
     ])
 # yapf:enable
 # runtime settings
-total_epochs = 1000
+total_epochs = 6000
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
 work_dir = '/content/gdrive/My Drive/Arirang/models/htc_without_semantic_r50_fpn_1x_dota1_5_etc/'
 load_from = None
-resume_from = None
+resume_from = '/content/gdrive/My Drive/Arirang/models/htc_without_semantic_r50_fpn_1x_dota1_5_etc/latest.pth'
 workflow = [('train', 1)]
