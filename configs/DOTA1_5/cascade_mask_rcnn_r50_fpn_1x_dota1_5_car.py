@@ -217,6 +217,7 @@ data = dict(
         img_prefix=imgae_root + 'train2017/',
         img_scale=(1024, 1024),
         img_norm_cfg=img_norm_cfg,
+        size_divisor=32,
         flip_ratio=0.5,
         with_mask=True,
         with_crowd=True,
@@ -228,6 +229,7 @@ data = dict(
         img_prefix=imgae_root + 'val2017/',
         img_scale=(1024, 1024),
         img_norm_cfg=img_norm_cfg,
+        size_divisor=32,
         flip_ratio=0,
         with_mask=True,
         with_crowd=True,
@@ -241,6 +243,7 @@ data = dict(
         # img_prefix=data_root + 'test1024_v2/images',
         img_scale=(1024, 1024),
         img_norm_cfg=img_norm_cfg,
+        size_divisor=32,
         flip_ratio=0,
         with_mask=False,
         with_label=False,
@@ -267,10 +270,10 @@ log_config = dict(
     ])
 # yapf:enable
 # runtime settings
-total_epochs = 2000
+total_epochs = 1000
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
 work_dir = '/content/gdrive/My Drive/Arirang/models/cascade_mask_rcnn_r50_fpn_1x_dota1_5_car/'
-load_from = None#'/content/gdrive/My Drive/Arirang/models/cascade_mask_rcnn_r50_fpn_1x_dota1_5/epoch_105.pth'
-resume_from = '/content/gdrive/My Drive/Arirang/models/cascade_mask_rcnn_r50_fpn_1x_dota1_5_car/latest.pth'
+load_from = '/content/gdrive/My Drive/Arirang/models/cascade_mask_rcnn_r50_fpn_1x_dota1_5/epoch_105.pth'
+resume_from = None
 workflow = [('train', 1)]
