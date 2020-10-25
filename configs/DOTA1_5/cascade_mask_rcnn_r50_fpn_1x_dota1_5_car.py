@@ -203,8 +203,9 @@ test_cfg = dict(
         mask_thr_binary=0.5),
     keep_all_stages=False)
 # dataset settings
-dataset_type = 'DOTA1_5Dataset_v2'
-data_root = '/content/gdrive/My Drive/Arirang/data/train/coco_add/'
+dataset_type = 'DOTA1_5Dataset_v2_car'
+data_root = '/content/gdrive/My Drive/Arirang/data/train/custom_coco_all_car/'
+imgae_root = '/content/gdrive/My Drive/Arirang/data/train/coco_all/'
 img_norm_cfg = dict(
     mean=[54.06, 53.295, 50.235], std=[36.72, 35.955, 33.915], to_rgb=True)
 data = dict(
@@ -213,7 +214,7 @@ data = dict(
     train=dict(
         type=dataset_type,
         ann_file=data_root + 'annotations/instances_train2017.json',
-        img_prefix=data_root + 'train2017/',
+        img_prefix=imgae_root + 'train2017/',
         img_scale=(1024, 1024),
         img_norm_cfg=img_norm_cfg,
         size_divisor=32,
@@ -225,7 +226,7 @@ data = dict(
     val=dict(
         type=dataset_type,
         ann_file=data_root + 'annotations/instances_val2017.json',
-        img_prefix=data_root + 'val2017/',
+        img_prefix=imgae_root + 'val2017/',
         img_scale=(1024, 1024),
         img_norm_cfg=img_norm_cfg,
         size_divisor=32,
@@ -249,7 +250,8 @@ data = dict(
         test_mode=True))
 
 # optimizer
-optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
+optimizer = dict(type='Adam', lr=0.0005, weight_decay=0.0001)
+#optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 # learning policy
 lr_config = dict(
@@ -257,7 +259,7 @@ lr_config = dict(
     warmup='linear',
     warmup_iters=500,
     warmup_ratio=1.0 / 3,
-    step=[8, 11])
+    step=[110])
 checkpoint_config = dict(interval=5)
 # yapf:disable
 log_config = dict(
@@ -271,7 +273,7 @@ log_config = dict(
 total_epochs = 1000
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = '/content/gdrive/My Drive/Arirang/models/cascade_mask_rcnn_r50_fpn_1x_dota1_5/'
+work_dir = '/content/gdrive/My Drive/Arirang/models/cascade_mask_rcnn_r50_fpn_1x_dota1_5_car/'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
