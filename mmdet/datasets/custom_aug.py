@@ -15,10 +15,13 @@ class CustomAugmentation(object):
                         sometimes(iaa.CropToFixedSize(width=640, height=640)),
                         iaa.Fliplr(0.5),
                         iaa.Flipud(0.5),
-                        iaa.Affine(rotate=(-380, 380),
+                        iaa.Affine(rotate=(-380, 380), scale=(0.7, 1.3), 
                                 translate_percent={'x': (-0.2, 0.2), 'y': (-0.2, 0.2)},
                                 #mode=['symmetric', 'reflect'], # bbox는 reflect 되지 않음
-                                cval=(0, 0)),                             
+                                cval=(0, 0)),  
+                        sometimes(iaa.SomeOf(1, [iaa.GaussianBlur(sigma=(0.6, 1.4)),
+                                iaa.AverageBlur(k=(1, 3)), iaa.MedianBlur(k=(1, 3)),
+                                iaa.BilateralBlur(d=(5, 7),sigma_space=(10, 250))])),                           
                         sometimes(iaa.PerspectiveTransform(scale=(0.01, 0.11))),
                     ])
 
