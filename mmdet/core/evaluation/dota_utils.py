@@ -244,7 +244,9 @@ def HBBSeg2Comp4(dataset, results):
         filename = dataset.img_infos[idx]['filename']
         # print('filename: ', filename)
         det, seg = results[idx]
-        for label in range(len(det)-1):
+        print(dataset.CLASSES)
+        
+        for label in range(len(dataset.CLASSES)):
             bboxes = det[label]
             segms = seg[label]
             cls_name = dataset.CLASSES[label]
