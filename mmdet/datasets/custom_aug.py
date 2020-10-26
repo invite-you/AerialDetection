@@ -12,7 +12,7 @@ class CustomAugmentation(object):
     def __init__(self):
         sometimes = lambda aug: iaa.Sometimes(0.3, aug)
         self.seq = iaa.Sequential([
-                        iaa.CropToFixedSize(width=640, height=640),
+                        iaa.Sometimes(iaa.CropToFixedSize(width=640, height=640)),
                         iaa.Fliplr(0.5),
                         iaa.Flipud(0.5),
                         iaa.Affine(rotate=(-380, 380),
