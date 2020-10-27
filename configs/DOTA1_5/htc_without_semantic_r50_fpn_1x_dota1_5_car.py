@@ -152,7 +152,7 @@ train_cfg = dict(
                 min_pos_iou=0.6,
                 ignore_iof_thr=-1),
             sampler=dict(
-                type='RandomSampler',
+                type='RandomRbboxSampler',
                 num=2048,
                 pos_fraction=0.25,
                 neg_pos_ub=-1,
@@ -162,7 +162,7 @@ train_cfg = dict(
             debug=False),
         dict(
             assigner=dict(
-                type='MaxIoUAssignerRbbox',
+                type='MaxIoUAssignerCy',
                 pos_iou_thr=0.7,
                 neg_iou_thr=0.7,
                 min_pos_iou=0.7,
