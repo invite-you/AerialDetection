@@ -1,31 +1,16 @@
-# model settings
-#    pretrained='open-mmlab://resnext101_64x4d',
-#    interleaved=True,
-#    mask_info_flow=True,
-#    backbone=dict(
-#        type='ResNeXt',
-#        depth=101,
-#        groups=64,
-#        base_width=4,
-#        num_stages=4,
-#        out_indices=(0, 1, 2, 3),
-#        frozen_stages=1,
-#        style='pytorch'),  
 model = dict(
     type='HybridTaskCascade',
     num_stages=3,
-    pretrained='open-mmlab://resnext101_64x4d',
+    pretrained='modelzoo://resnet50',
     interleaved=True,
     mask_info_flow=True,
     backbone=dict(
-        type='ResNeXt',
-        depth=101,
-        groups=64,
-        base_width=4,
+        type='ResNet',
+        depth=50,
         num_stages=4,
         out_indices=(0, 1, 2, 3),
         frozen_stages=1,
-        style='pytorch'),  
+        style='pytorch'), 
     neck=dict(
         type='FPN',
         in_channels=[256, 512, 1024, 2048],
@@ -45,7 +30,7 @@ model = dict(
         loss_bbox=dict(type='SmoothL1Loss', beta=1.0 / 9.0, loss_weight=1.0)),
     bbox_roi_extractor=dict(
         type='SingleRoIExtractor',
-        roi_layer=dict(type='RoIAlign', out_size=7, sample_num=2),
+        roi_layer=dict(type='RoIAlign', out_size=7, sample_num=0),
         out_channels=256,
         featmap_strides=[4, 8, 16, 32]),
     bbox_head=[
@@ -66,7 +51,7 @@ model = dict(
             loss_bbox=dict(
                 type='SmoothL1Loss',
                 beta=1.0,
-                loss_weight=1.0)),
+                loss_weight=2.0)),
         dict(
             type='SharedFCBBoxHead',
             num_fcs=2,
@@ -84,7 +69,7 @@ model = dict(
             loss_bbox=dict(
                 type='SmoothL1Loss',
                 beta=1.0,
-                loss_weight=1.0)),
+                loss_weight=2.0)),
         dict(
             type='SharedFCBBoxHead',
             num_fcs=2,
@@ -102,7 +87,7 @@ model = dict(
             loss_bbox=dict(
                 type='SmoothL1Loss',
                 beta=1.0,
-                loss_weight=1.0))
+                loss_weight=2.0)),
     ],
     mask_roi_extractor=dict(
         type='SingleRoIExtractor',
@@ -128,7 +113,7 @@ train_cfg = dict(
             ignore_iof_thr=-1),
         sampler=dict(
             type='RandomSampler',
-            num=256,
+            num=2048,
             pos_fraction=0.5,
             neg_pos_ub=-1,
             add_gt_as_proposals=False),
@@ -152,7 +137,7 @@ train_cfg = dict(
                 ignore_iof_thr=-1),
             sampler=dict(
                 type='RandomSampler',
-                num=512,
+                num=2048,
                 pos_fraction=0.25,
                 neg_pos_ub=-1,
                 add_gt_as_proposals=True),
@@ -168,7 +153,7 @@ train_cfg = dict(
                 ignore_iof_thr=-1),
             sampler=dict(
                 type='RandomSampler',
-                num=512,
+                num=2048,
                 pos_fraction=0.25,
                 neg_pos_ub=-1,
                 add_gt_as_proposals=True),
@@ -177,14 +162,14 @@ train_cfg = dict(
             debug=False),
         dict(
             assigner=dict(
-                type='MaxIoUAssignerCy',
+                type='MaxIoUAssignerRbbox',
                 pos_iou_thr=0.7,
                 neg_iou_thr=0.7,
                 min_pos_iou=0.7,
                 ignore_iof_thr=-1),
             sampler=dict(
-                type='RandomSampler',
-                num=512,
+                type='RandomRbboxSampler',
+                num=2048,
                 pos_fraction=0.25,
                 neg_pos_ub=-1,
                 add_gt_as_proposals=True),
@@ -263,7 +248,7 @@ lr_config = dict(
     warmup_iters=500,
     warmup_ratio=1.0 / 3,
     step=[110])
-checkpoint_config = dict(interval=5)
+checkpoint_config = dict(interval=6)
 # yapf:disable
 log_config = dict(
     interval=50,
@@ -277,6 +262,7 @@ total_epochs = 1000
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
 work_dir = '/content/gdrive/My Drive/Arirang/models/htc_without_semantic_r50_fpn_1x_dota1_5_car/'
-load_from = '/content/gdrive/My Drive/Arirang/models/htc_without_semantic_r50_fpn_1x_dota1_5_car/latest.pth'
-resume_from = None
+#load_from = '/content/gdrive/My Drive/Arirang/models/htc_without_semantic_r50_fpn_1x_dota1_5_car/latest.pth'
+load_from = None#'/content/gdrive/My Drive/Arirang/models/cascade_mask_rcnn_r50_fpn_1x_dota1_5_car/epoch_18.pth'
+resume_from = '/content/gdrive/My Drive/Arirang/models/htc_without_semantic_r50_fpn_1x_dota1_5_car/latest.pth'
 workflow = [('train', 1)]
