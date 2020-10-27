@@ -202,7 +202,7 @@ imgae_root = '/content/gdrive/My Drive/Arirang/data/train/coco_all/'
 img_norm_cfg = dict(
     mean=[54.06, 53.295, 50.235], std=[36.72, 35.955, 33.915], to_rgb=True)
 data = dict(
-    imgs_per_gpu=2,
+    imgs_per_gpu=1,
     workers_per_gpu=1,
     train=dict(
         type=dataset_type,
