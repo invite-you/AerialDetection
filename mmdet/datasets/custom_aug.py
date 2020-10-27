@@ -23,6 +23,7 @@ class CustomAugmentation(object):
                                 iaa.AverageBlur(k=(1, 3)), iaa.MedianBlur(k=(1, 3)),
                                 iaa.BilateralBlur(d=(5, 7),sigma_space=(10, 250))])),                           
                         sometimes(iaa.PerspectiveTransform(scale=(0.01, 0.11))),
+                        sometimes( iaa.Grayscale(alpha=(0.0, 0.3)) ),
                     ])
 
     def __call__(self, img, boxes, masks, labels, filename):
