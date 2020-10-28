@@ -15,7 +15,7 @@ class CustomAugmentation(object):
                         sometimes(iaa.CropToFixedSize(width=640, height=640)),
                         iaa.Fliplr(0.5),
                         iaa.Flipud(0.5),
-                        iaa.imgcorruptlike.Brightness(severity=2),
+                        iaa.MultiplyAndAddToBrightness(mul=(0.9, 1.1), add=(-5, 5)),
                         iaa.Affine(rotate=(-380, 380), scale=(0.7, 1.3), 
                                 translate_percent={'x': (-0.2, 0.2), 'y': (-0.2, 0.2)},
                                 #mode=['symmetric', 'reflect'], # bbox는 reflect 되지 않음
