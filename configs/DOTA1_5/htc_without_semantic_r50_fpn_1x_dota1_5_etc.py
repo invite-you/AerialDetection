@@ -190,10 +190,10 @@ test_cfg = dict(
         min_bbox_size=0),
     rcnn=dict(
         score_thr=0.05,
-        nms=dict(type='nms', iou_thr=0.5),
+        nms=dict(type='nms', iou_thr=0.3),
         # max_per_img=1000,
         max_per_img=3000,
-        mask_thr_binary=0.5),
+        mask_thr_binary=0.3),
     keep_all_stages=False)
 # dataset settings
 dataset_type = 'DOTA1_5Dataset_v2_etc'
