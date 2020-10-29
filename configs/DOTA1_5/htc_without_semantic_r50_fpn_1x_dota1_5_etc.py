@@ -149,9 +149,9 @@ train_cfg = dict(
         dict(
             assigner=dict(
                 type='MaxIoUAssignerCy',
-                pos_iou_thr=0.6,
-                neg_iou_thr=0.6,
-                min_pos_iou=0.6,
+                pos_iou_thr=0.7,
+                neg_iou_thr=0.7,
+                min_pos_iou=0.7,
                 ignore_iof_thr=-1),
             sampler=dict(
                 type='RandomRbboxSampler',
@@ -165,9 +165,9 @@ train_cfg = dict(
         dict(
             assigner=dict(
                 type='MaxIoUAssignerCy',
-                pos_iou_thr=0.7,
-                neg_iou_thr=0.7,
-                min_pos_iou=0.7,
+                pos_iou_thr=0.8,
+                neg_iou_thr=0.8,
+                min_pos_iou=0.8,
                 ignore_iof_thr=-1),
             sampler=dict(
                 type='RandomRbboxSampler',
@@ -189,7 +189,7 @@ test_cfg = dict(
         nms_thr=0.7,
         min_bbox_size=0),
     rcnn=dict(
-        score_thr=0.05,
+        score_thr=0.7,
         nms=dict(type='nms', iou_thr=0.8),
         # max_per_img=1000,
         max_per_img=3000,
@@ -240,7 +240,7 @@ data = dict(
         with_label=False,
         test_mode=True))
 # optimizer
-optimizer = dict(type='Adam', lr=0.0005, weight_decay=0.0001)
+optimizer = dict(type='Adam', lr=0.0001, weight_decay=0.0001)
 #optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 # learning policy
