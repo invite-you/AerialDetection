@@ -200,7 +200,7 @@ imgae_root = '/content/gdrive/My Drive/Arirang/data/train/coco_all/'
 img_norm_cfg = dict(
     mean=[54.06, 53.295, 50.235], std=[36.72, 35.955, 33.915], to_rgb=True)
 data = dict(
-    imgs_per_gpu=2,
+    imgs_per_gpu=1,
     workers_per_gpu=1,
     train=dict(
         type=dataset_type,
@@ -218,7 +218,7 @@ data = dict(
         type=dataset_type,
         ann_file=data_root + 'annotations/instances_val2017.json',
         img_prefix=imgae_root + 'val2017/',
-        img_scale=(768, 768),
+        img_scale=(896, 896),
         img_norm_cfg=img_norm_cfg,
         size_divisor=32,
         flip_ratio=0,
